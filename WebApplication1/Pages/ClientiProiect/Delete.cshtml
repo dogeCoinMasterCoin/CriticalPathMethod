@@ -1,0 +1,43 @@
+﻿@page
+@using System.Data.Odbc;
+
+<h3>Delete Record</h3>
+
+<form method="post">
+
+    <input type="text" name="ID_client" value="@Request.Query["ID_client"]" />
+
+    <p>Are you sure you want to delete this record?</p>
+
+    <button type="submit">Delete</button>
+</form>
+
+
+@{
+    if (Request.Method.Equals("POST", StringComparison.OrdinalIgnoreCase))
+    {
+        try
+        {
+            String id = Request.Form["ID_client"];
+
+            string connectionString = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=D:\\Projects\\BD_Valasciuc_Bogdan_06.04.23.accdb;";
+            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            {
+                connection.Open();
+
+                String sql = "DELETE FROM Clienti_Proiecte WHERE ID_client = ?";
+                using (OdbcCommand command = new OdbcCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@ID_client", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            <p>Record deleted successfully!</p>
+        }
+        catch (Exception ex)
+        {
+            <p>Error deleting record: @ex.Message</p>
+        }
+    }
+}

@@ -1,0 +1,36 @@
+﻿@page
+@model WebApplication1.Pages.Produs.ProdusPageModel
+@{
+}
+
+<br>
+<h2>Produse</h2>
+<form action="/search" method="get">
+    <input type="text" placeholder="Search..." name="q" style="width: 450px; margin-bottom: 10px;">
+    <button type="submit">Search</button>
+</form>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@gmail.com")
+{
+    <a class='btn btn-primary btn-sm' href='/Produs/Create'> Produs Nou</a>
+    <a class="btn btn-danger btn-sm" href="/Produs/Delete">Sterge un produs</a>
+} 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID_produs</th>
+            <th>Denumire_produs</th>
+            <th>Cod_produs</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.products)
+        {
+            <tr>
+                <td>@item.ID_produs</td>
+                <td>@item.Denumire_produs</td>
+                <td>@item.Cod_produs</td>
+            </tr>
+        }
+    </tbody>
+</table>

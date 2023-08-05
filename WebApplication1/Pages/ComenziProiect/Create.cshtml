@@ -1,0 +1,88 @@
+﻿@page
+@model WebApplication1.Pages.ComenziProiect.CreateModel
+@{
+}
+
+
+<br />
+<h2>Creaza o noua comanda de proeict</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+    </div>
+}
+
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ID_produs</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="id_produs" value="" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ID_proiect</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="id_proiect" value="" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ID_client</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="id_client" value="" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Durata_contractuala_proiect</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="durata_contractuala_proiect" value="" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UM_durata</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="um_durata" value="" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Pret_contractual_proiect</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="pret_contractual_proiect" value="" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UM_pret</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="um_pret" value="" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Adresa_livrare_produs</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="adresa_livrare_produs" value="" />
+        </div>
+    </div>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

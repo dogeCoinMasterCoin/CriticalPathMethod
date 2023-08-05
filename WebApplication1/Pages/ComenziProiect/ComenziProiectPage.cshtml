@@ -1,0 +1,46 @@
+﻿@page
+@model WebApplication1.Pages.ComenziProiect.ComenziProiectPageModel
+@{
+}
+
+<br>
+<h2>Comenzi Proiect</h2>
+<form action="/search" method="get">
+    <input type="text" placeholder="Search..." name="q" style="width: 450px; margin-bottom: 10px;">
+    <button type="submit">Search</button>
+</form>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@gmail.com")
+{
+    <a class='btn btn-primary btn-sm' href='/ComenziProiect/Create'> Comanda Noua</a>
+    <a class="btn btn-danger btn-sm" href="/ComenziProiect/Delete">Sterge o comanda</a>
+} 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID_produs</th>
+            <th>ID_proiect</th>
+            <th>ID_client</th>
+            <th>Durata_cont</th>
+            <th>UM_durata</th>
+            <th>Pret_contractual_proiect</th>
+            <th>UM_pret</th>
+            <th>Adresa_livrare_produs</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.projectCommands)
+        {
+            <tr>
+                <td>@item.ID_produs</td>
+                <td>@item.ID_proiect</td>
+                <td>@item.ID_client</td>
+                <td>@item.Durata_cont</td>
+                <td>@item.UM_durata</td>
+                <td>@item.Pret_contractual_proiect</td>
+                <td>@item.UM_pret</td>
+                <td>@item.Adresa_livrare_produs</td>
+            </tr>
+        }
+    </tbody>
+</table>

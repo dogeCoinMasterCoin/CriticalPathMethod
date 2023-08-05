@@ -1,0 +1,49 @@
+﻿@page
+@model WebApplication1.Pages.ActivitatiProiect.ActivitatiProiectPageModel
+@{
+}
+
+<br>
+<h2>Activitati Proiect</h2>
+<form action="/search" method="get">
+    <input type="text" placeholder="Search..." name="q" style="width: 450px; margin-bottom: 10px;">
+    <button type="submit">Search</button>
+</form>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@gmail.com")
+{
+    <a class='btn btn-primary btn-sm' href='/ActivitatiProiect/NewActivity'> Activitate Noua</a>
+    <a class="btn btn-danger btn-sm" href="/ActivitatiProiect/Delete">Sterge o activitate</a>
+} 
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID_produs</th>
+            <th>ID_activ</th>
+            <th>ID_activ_predecesoare</th>
+            <th>Descriere_activ</th>
+            <th>Durata_standard_activ</th>
+            <th>Durata_min_activ</th>
+            <th>UM_durata</th>
+            <th>Cost_standard_activ</th>
+            <th>Cost_max_activ</th>
+            <th>UM_cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.projectActivity)
+        {
+            <tr>
+                <td>@item.ID_produs</td>
+                <td>@item.ID_activitate</td>
+                <td>@item.ID_activitati_predecesoare</td>
+                <td>@item.Descriere_activitate</td>
+                <td>@item.Durata_standard_activitate</td>
+                <td>@item.Durata_minima_activitate</td>
+                <td>@item.UM_durata</td>
+                <td>@item.Cost_standard_activitate</td>
+                <td>@item.Cost_maxim_activitate</td>
+                <td>@item.UM_cost</td>
+            </tr>
+        }
+    </tbody>
+</table>

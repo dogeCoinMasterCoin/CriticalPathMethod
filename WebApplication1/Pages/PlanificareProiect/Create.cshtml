@@ -1,0 +1,112 @@
+﻿@page
+@model WebApplication1.Pages.PlanificareProiect.CreateModel
+@{
+}
+
+
+<br />
+<h2>Creaza o noua planificare</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+    </div>
+}
+
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ID_produs</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="id_produs" value="@Model.planificareProiect.ID_produs" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ID_proiect</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="id_proiect" value="@Model.planificareProiect.ID_proiect" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ID_activitate_proiect</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="id_activitate_proiect" value="@Model.planificareProiect.ID_activitate" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Durata_planificata_activitate</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="durata_planificata_activitate" value="@Model.planificareProiect.Durata_planificare_activitate" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UM_durata</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="um_durata" value="@Model.planificareProiect.UM_durata" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Cost_planificat_activitate</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="cost_planificat_activitate" value="@Model.planificareProiect.Cost_planificare_activitate" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UM_cost</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="um_cost" value="@Model.planificareProiect.UM_cost" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Drum_critic_proiect</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="drum_critic_proiect" value="@Model.planificareProiect.Drum_critic_proiect" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Durata_planificata_proiect</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="durata_planificata_proiect" value="@Model.planificareProiect.Durata_planificare_proiect" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UM_durata2</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="um_durata2" value="@Model.planificareProiect.UM_durata2" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Cost_planificat_proiect</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="cost_planificat_proiect" value="@Model.planificareProiect.Cost_planificare_proiect" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UM_cost2</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="um_cost2" value="@Model.planificareProiect.UM_cost2" />
+        </div>
+    </div>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

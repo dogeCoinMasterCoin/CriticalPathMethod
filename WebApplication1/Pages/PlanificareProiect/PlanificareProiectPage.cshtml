@@ -1,0 +1,56 @@
+﻿@page
+@model WebApplication1.Pages.PlanificareProiect.PlanificareProiectPageModel
+@{
+}
+
+<br>
+<h2>Planificare Proiect</h2>
+<form action="/search" method="get">
+    <input type="text" placeholder="Search..." name="q" style="width: 450px; margin-bottom: 10px;">
+    <button type="submit">Search</button>
+</form>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@gmail.com")
+{
+    <a class='btn btn-primary btn-sm' href='/PlanificareProiect/Create'> Planificare Noua</a>
+    <a class="btn btn-danger btn-sm" href="/PlanificareProiect/Delete">Sterge o planificare</a>
+
+} 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID_produs</th>
+            <th>ID_proiect</th>
+            <th>ID_activ</th>
+            <th>Durata_plan_activ</th>
+            <th>UM_durata</th>
+            <th>Cost_plan_activ</th>
+            <th>UM_cost</th>
+            <th>Drum_critic_proiect</th>
+            <th>Durata_plan_proiect</th>
+            <th>UM_durata2</th>
+            <th>Cost_plan_proiect</th>
+            <th>UM_cost2</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.projectPlanning)
+        {
+            <tr>
+                <td>@item.ID_produs</td>
+                <td>@item.ID_proiect</td>
+                <td>@item.ID_activitate</td>
+                <td>@item.Durata_planificare_activitate</td>
+                <td>@item.UM_durata</td>
+                <td>@item.Cost_planificare_activitate</td>
+                <td>@item.UM_cost</td>
+                <td>@item.Drum_critic_proiect</td>
+                <td>@item.Durata_planificare_proiect</td>
+                <td>@item.UM_durata2</td>
+                <td>@item.Cost_planificare_proiect</td>
+                <td>@item.UM_cost2</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,77 @@
+﻿@page
+@model WebApplication1.Pages.ClientiProiect.CreateModel
+@{
+}
+
+
+<br />
+<h2>Adauga un nou client</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+    </div>
+}
+
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ID_client</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" name="id_client" value="@Model.clientiProiect.ID_client" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Denumire_firma</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="denumire_firma" value="@Model.clientiProiect.Denumire_firma" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nume</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="nume" value="@Model.clientiProiect.Nume" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Prenume</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="prenume" value="@Model.clientiProiect.Prenume" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nr_telefon</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="nr_telefon" value="@Model.clientiProiect.Nr_telefon" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Adresa_mail</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="adresa_mail" value="@Model.clientiProiect.Adresa_email" />
+        </div>
+    </div>
+
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

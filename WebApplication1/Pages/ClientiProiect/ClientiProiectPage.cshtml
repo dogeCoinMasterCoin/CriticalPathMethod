@@ -1,0 +1,42 @@
+﻿@page
+@model WebApplication1.Pages.ClientiProiect.ClientiProiectPageModel
+@{
+}
+
+<br>
+<h2>Clienti Proiect</h2>
+<form action="/search" method="get">
+    <input type="text" placeholder="Search..." name="q" style="width: 450px; margin-bottom: 10px;">
+    <button type="submit">Search</button>
+</form>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@gmail.com")
+{
+    <a class='btn btn-primary btn-sm' href='/ClientiProiect/Create'> Client Nou</a>
+    <a class="btn btn-danger btn-sm" href="/ClientiProiect/Delete">Sterge un client</a>
+} 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID_client</th>
+            <th>Denumire_firma</th>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>Nr_telefon</th>
+            <th>Adresa_mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.projectClients)
+        {
+            <tr>
+                <td>@item.ID_client</td>
+                <td>@item.Denumire_firma</td>
+                <td>@item.Nume</td>
+                <td>@item.Prenume</td>
+                <td>@item.Nr_telefon</td>
+                <td>@item.Adresa_email</td>
+            </tr>
+        }
+    </tbody>
+</table>

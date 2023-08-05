@@ -1,0 +1,154 @@
+﻿@page
+@model WebApplication1.Pages.SearchPage.SearchPageModel
+@{
+}
+
+<br>
+<h2>Planificare Proiect</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planificare Proiect</title>
+</head>
+<body>
+    <form method="post" style="margin-top: 25px">
+
+        <label> Instructiuni campuri:</label>
+
+        <div style="margin-top:10px">
+            <label for="productID">ID produs: </label>
+            <input type="number" id="productID" asp-for="productID" style="margin-left: 10px" />
+
+            <label for="finalizationTime" style="margin-left: 20px">Durata contractuala proiect: </label>
+            <input type="number" id="finalizationTime" asp-for="finalizationTime" runat="server" style="margin-left: 10px" />
+
+            <button type="submit" id="myButon" asp-page-handler="OnPost"> Start </button>
+            <input type="hidden" id="counter" name="counter" value="@Model.Counter" />
+        </div>
+    </form>
+
+    @if (Model.sumOfTotalDuration >= @Model.userInputTimeLimit && Model.idFazaProiectListGlobal.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>ID_faza_proiect</th>                          
+                    <th>Durata_standard_faza:</th>
+                    <th>Durata_minima_faza:</th>
+                    <th>Durata_faza:</th>
+                    <th>Scurtare_posibila_faza:</th>
+                    <th>Cost_standard_faza:</th>
+                    <th>Rata_crestere_cost_faza:</th>
+                    <th>Cost_faza:</th>
+                    <th>NP_faza_proiect_CMD:</th>
+                    <th>NP_faza_proiect_CMT:</th>
+                    <th>Marja_faza:</th>
+                    <th>Drum_Critic:</th>
+                    <th>Rata_crestere_Cost_DC_CMD:</th>
+                    <th>Durata_proiect:</th>
+                    <th>Cost_proiect:</th>
+                    <th>Scurtare_proiect:</th>
+                    <tr>
+                        <td colspan="7"></td>
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.count; i++)
+                {
+                    <tr>
+                        <th>@Model.idFazaProiectListGlobal[i]</th>
+                        <th>@Model.durataStandardFazaListGlobal[i]</th>
+                        <th>@Model.durataMinimaFazaListGlobal[i]</th>
+                        <th>@Model.durataFazaListGlobal[i]</th>
+                        <th>@Model.scurtarePosibilaListGLobal[i]</th>
+                        <th>@Model.costStandardFazaListGlobal[i]</th>
+                        <th>@Model.rataCrestereCostFazaListGlobal[i]</th>
+                        <th>@Model.costFazaListGlobal[i]</th>
+                        <th>@Model.npFazaProiectCmdListGlobal[i]</th>
+                        <th>@Model.npFazaProiectCmtListGlobal[i]</th>
+                        <th>@Model.marjaFazaListGlobal[i]</th>
+                        <th>@Model.dcParalelCmdListGlobal[i]</th>
+                        <th>@Model.rataCrestereCostDcCmdListGlobal[i]</th>
+                        <th>@Model.durataProiectListGlobal[i]</th>
+                        <th>@Model.projectCostListGlobal[i]</th>
+                        <th>@Model.scurtarePosibilaProiect[i]</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <label>Pentru timpul introdus: @Model.userInputTimeLimit @Model.um_durataGlobal[0], s-a gasit un rezultat final cu timpul total de: @Model.sumOfTotalDuration @Model.um_durataGlobal[0] si un cost total de: @Model.totalCostProject @Model.um_costGlobal[0].</label>
+    }
+    else if (Model.sumOfTotalDuration <= @Model.userInputTimeLimit && Model.idFazaProiectListGlobal.Count > 0)
+    {
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID_faza_proiect</th>
+                    <th>Durata_standard_faza:</th>
+                    <th>Durata_minima_faza:</th>
+                    <th>Durata_faza:</th>
+                    <th>Scurtare_posibila_faza:</th>
+                    <th>Cost_standard_faza:</th>
+                    <th>Rata_crestere_cost_faza:</th>
+                    <th>Cost_faza:</th>
+                    <th>NP_faza_proiect_CMD:</th>
+                    <th>NP_faza_proiect_CMT:</th>
+                    <th>Marja_faza:</th>
+                    <th>Drum_Critic:</th>
+                    <th>Rata_crestere_Cost_DC_CMD:</th>
+                    <th>Durata_proiect:</th>
+                    <th>Cost_proiect:</th>
+                    <th>Scurtare_proiect:</th>
+                <tr>
+                    <td colspan="7"></td>
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.count; i++)
+                {
+                    <tr>
+                        <th>@Model.idFazaProiectListGlobal[i]</th>
+                        <th>@Model.durataStandardFazaListGlobal[i]</th>
+                        <th>@Model.durataMinimaFazaListGlobal[i]</th>
+                        <th>@Model.durataFazaTimpPreaMareGlobal[i]</th>
+                        <th>@Model.scurtarePosibilaFazaTimpPreaMareGLobal[i]</th>
+                        <th>@Model.costStandardFazaListGlobal[i]</th>
+                        <th>@Model.rataCrestereCostFazaListGlobal[i]</th>
+                        <th>@Model.costFazaTimpPreaMareGlobal[i]</th>
+                        <th>@Model.npFazaProiectCmdListGlobal[i]</th>
+                        <th>@Model.npFazaProiectCmtListGlobal[i]</th>
+                        <th>@Model.marjaFazaListGlobal[i]</th>
+                        <th>@Model.dcParalelCmdListGlobal[i]</th>
+                        <th>@Model.rataCrestereCostDcCmdListGlobal[i]</th>
+                        <th>@Model.durataProiectListTimpPreaMareGlobal[i]</th>
+                        <th>@Model.projectCostListTimpPreaMareGlobal[i]</th>
+                        <th>@Model.scurtarePosibilaProiectTimpPreaMare[i]</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <script>
+            alert("Timp introdus prea mare!");
+        </script>
+    }
+
+    @*@if (@Model.sumOfTotalDuration > @Model.userInputTimeLimit && Model.idFazaProiectListGlobal.Count > 0)
+    {
+        <label> Timpul cerut este prea mic, mai incearca o data!</label>
+    }*@
+    @if (Model.stopOptimization == 2 || Model.stopOptimization == 1)
+    {
+        <label> Optimizarea a ajuns la final. Se reincepe procesul.</label>
+    }
+</body>
+</html>
+
+
+   
+
+
+
+

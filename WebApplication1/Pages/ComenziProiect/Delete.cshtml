@@ -1,0 +1,52 @@
+﻿@page
+@using System.Data.Odbc;
+
+<h3>Delete Record</h3>
+
+<form method="post">
+    <label> ID_produs</label>
+    <input type="text" name="ID_produs" value="@Request.Query["ID_produs"]" />
+    <label> ID_proiect</label>
+    <input type="text" name="ID_proiect" value="@Request.Query["ID_proiect"]" />
+    <label> ID_client</label>
+    <input type="text" name="ID_client" value="@Request.Query["ID_client"]" />
+
+    <p>Are you sure you want to delete this record?</p>
+
+    <button type="submit">Delete</button>
+</form>
+
+
+@{
+    if (Request.Method.Equals("POST", StringComparison.OrdinalIgnoreCase))
+    {
+        try
+        {
+            string id_produs = Request.Form["ID_produs"];
+            string id_proiect = Request.Form["ID_proiect"];
+            string id_client = Request.Form["ID_client"];
+
+            string connectionString = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=D:\\Projects\\BD_Valasciuc_Bogdan_06.04.23.accdb;";
+            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "DELETE FROM Comenzi_Proiecte WHERE ID_produs = ? AND ID_proiect = ? AND ID_client = ?";
+
+                using (OdbcCommand command = new OdbcCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@ID_produs", id_produs);
+                    command.Parameters.AddWithValue("@ID_proiect", id_proiect);
+                    command.Parameters.AddWithValue("@ID_client", id_client);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            <p>Record deleted successfully!</p>
+        }
+        catch (Exception ex)
+        {
+            <p>Error deleting record: @ex.Message</p>
+        }
+    }
+}
